@@ -1,0 +1,211 @@
+@use 'variables';
+@use 'initial';
+@use 'mixins';
+@use 'card';
+@use 'footer';
+
+//mobile-first
+.main-container{
+    width: 375px; //mobile
+    margin: auto; //center
+    @include mixins.desktop-view;
+}
+
+.navbar{
+    display: flex; //un elemento al lado del otro
+    justify-content: space-between; //espacio entre ellos
+    padding: 24px 24px 0;
+    margin-bottom: 100px;
+    &__logo{
+        width: 80px;
+        height: 25px;
+        @include mixins.desktop-view(170px);
+    }
+    &__nav-container{
+        display: flex; //uno al lado del otro
+        height: 25px;
+        width: 167px;
+        font-size: 0.8em;
+        justify-content: space-between;
+        @include mixins.desktop-view(274px, unset, 1em);
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            &:hover{
+                color: variables.$Bright-Blue;
+            }
+        }
+    }
+}
+
+.header{
+    padding: 0 24px 182px;
+    background-image: url("./images/bg-curve-mobile.svg");
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+
+    @include mixins.sections-desktop-view(38px, true);
+
+    &__illustration{
+        width: 100%; // 100% de su contenedor
+        margin-bottom: 40px;
+        @include mixins.illustration-desktop-view;
+    }
+    .header-content{
+        &__title{
+            font-size: 1.5em;
+            font-family: variables.$Headings-Font;
+            text-align: center;
+            line-height: 35px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        &__description{
+            text-align: center;
+            font-size: 0.95em;
+            margin-bottom: 30px;
+        }
+        &__form{
+            @include mixins.forms;
+        }
+    }
+
+}
+
+@media(min-width:1440px){
+    .header{
+        background-image: url("./images/bg-curve-desktop.svg");
+        height: 720px;
+
+        .header-content{
+            width: 590px;
+            &__title{
+                text-align: left;
+                font-size: 2.5em;
+                line-height: 55px;
+            }
+            &__description{
+                text-align: left;
+                font-size: 1.15em;
+            }
+            &__form{
+                flex-direction: row; //ya pusimos el display flex antes asi que no hay que ponerlo de nuevo
+                gap: 15px; //espacio entre elemento y elemento
+                width: 540px;
+                height: 50px;
+            }
+            &__form input{
+                flex-grow: 1; // los dos elementos se distribuyen el espacio en partes iguales (y tendran el mismo tamaño)
+            }
+    
+        }        
+    }
+}
+
+.details{
+    background-color: variables.$Light-Grayish-Blue;
+    height: 900px;
+    padding: 0 24px;
+    @include mixins.sections-desktop-view(65px, true);
+    &__illustration{
+        width: 100%;
+        margin-bottom: 80px;
+        @include mixins.illustration-desktop-view;
+    }
+    .details-content{
+        &__title{
+            font-size: 1em;
+            font-family: variables.$Headings-Font;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        &__paragraph{
+            margin-bottom: 25px;
+            line-height: 20px;
+            font-size: 0.86em;
+        }
+        &__link{
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+            color: variables.$Moderate-Cyan;        
+        }
+    }
+}
+
+@media(min-width:1440px){
+    .details{
+        height: 677px;
+        &__illustration{
+            width: 550px;
+        }
+        .details-content{
+            height: 498px;
+
+            &__title{
+                font-size: 2.5em;
+                text-align: left;
+            }
+            &__paragraph{
+                width: 520px;
+                line-height: 25px;
+                font-size: 1em;
+            }
+            &__link{
+                text-align: left;    
+            }
+        }
+    }
+}
+
+.early-access{
+    background-color: variables.$Desaturated-Blue;
+    color: variables.$Light-Gray;
+    padding: 58px 62px 69px 38px;
+    min-height: 300px;
+    @include mixins.sections-desktop-view(244px);
+
+    &__title{
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    &__description{
+        text-align: center;
+        font-size: 0.9em;
+        margin-bottom: 28px;
+    }
+    &__form{
+        @include mixins.forms;
+    }
+}
+
+@media(min-width:1440px){
+    .early-access{
+        &__title{
+            text-align: left;
+        }
+        &__description{
+            text-align: left;
+        }
+        &__form{
+            width: 484px;
+            & input[type="submit"]{
+                width: 50%;
+                font-size: 0.8em;
+            }           
+        }
+    }
+}
+
+.attribution { 
+    margin: 20px 0;
+    font-size: 15px; 
+    text-align: center; 
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
